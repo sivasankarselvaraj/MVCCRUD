@@ -24,7 +24,8 @@ namespace MVC__with_CRUD.Controllers
         // GET: DoctorsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+          var obj= Result.GetbyID(id);
+            return View("Details",obj);
         }
 
         // GET: DoctorsController/Create
@@ -41,9 +42,15 @@ namespace MVC__with_CRUD.Controllers
         {
             try
             {
-                
-                Result.Insert(add);
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    Result.Insert(add);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View("Create", add);
+                }
             }
             catch
             {
@@ -52,18 +59,20 @@ namespace MVC__with_CRUD.Controllers
         }
 
         // GET: DoctorsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
-            return View();
+            var Obj = Result.GetbyID(id);
+            return View("Update",Obj);
         }
 
         // POST: DoctorsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(long id, Doctors Pro)
         {
             try
             {
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -75,16 +84,18 @@ namespace MVC__with_CRUD.Controllers
         // GET: DoctorsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var Get = Result.GetbyID(id);
+            return View("Delete",Get);
         }
 
         // POST: DoctorsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id,Doctors Get)
         {
             try
             {
+                Result.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -92,5 +103,10 @@ namespace MVC__with_CRUD.Controllers
                 return View();
             }
         }
+        public ActionResult LogIN()
+        {
+            return View("Login", new Doctors());
+        }
+
     }
 }

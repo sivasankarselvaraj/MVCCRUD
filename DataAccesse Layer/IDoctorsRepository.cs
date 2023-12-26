@@ -12,6 +12,6 @@ namespace DataAccesse_Layer
         public void Update(long No, Doctors Replace);
         public List<Doctors> GetAll();
         public void Delete(long no);
-        public List<Doctors> GetbyID(long No);
+        public Doctors GetbyID(long No);
     }
 }

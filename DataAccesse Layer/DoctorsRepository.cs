@@ -62,14 +62,14 @@ namespace DataAccesse_Layer
             Send.Close();
 
         }
-        public List<Doctors> GetbyID(long No)
+        public Doctors GetbyID(long No)
         {
             var Send = new SqlConnection(Connection);
             Send.Open();
             var Show = $"exec GetbyID {No} ";
-            var Details = Send.Query<Doctors>(Show);
+            var Details = Send.QueryFirstOrDefault<Doctors>(Show);
             Send.Close();
-            return Details.ToList();
+            return Details;
         }
     
     }
