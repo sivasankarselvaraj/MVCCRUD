@@ -41,6 +41,7 @@ namespace MVC__with_CRUD.Controllers
         {
             try
             {
+                
                 Result.Insert(add);
                 return RedirectToAction(nameof(Index));
             }
