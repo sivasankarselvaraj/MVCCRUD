@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using DataAccesse_Layer;
 namespace MVC__with_CRUD
 {
     public class Startup
@@ -23,6 +23,7 @@ namespace MVC__with_CRUD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IDoctorsRepository, DoctorsRepository>();
             services.AddControllersWithViews();
         }
 

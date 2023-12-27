@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using Dapper;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 
 namespace DataAccesse_Layer
 {
    public  class DoctorsRepository:IDoctorsRepository
     {
-        string Connection = "Data source=DESKTOP-UCPA9BN;initial catalog=batch7;user id=sa;password=Anaiyaan@123;";
-
+        public string Connection;
+        public DoctorsRepository(IConfiguration Service)
+        {
+            Connection = Service.GetConnectionString("Dbconnection");
+        }
 
         public void Insert(Doctors add)
         {

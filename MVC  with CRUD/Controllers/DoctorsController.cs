@@ -4,15 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using DataAccesse_Layer;
 namespace MVC__with_CRUD.Controllers
 {
     public class DoctorsController : Controller
     {
         private readonly IDoctorsRepository Result;
-        public DoctorsController()
+        private readonly string Connection;
+        public DoctorsController(IDoctorsRepository Obj, IConfiguration service)
         {
-            Result =new DoctorsRepository();
+            Result = Obj;
+            Connection = service.GetConnectionString("Dbconnection");
         }
         // GET: DoctorsController
         public ActionResult Index()
