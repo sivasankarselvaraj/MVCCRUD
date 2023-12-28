@@ -12,9 +12,9 @@ namespace MVC__with_CRUD.Controllers
     {
         private readonly IDoctorsRepository Result;
         private readonly string Connection;
-        public DoctorsController(IDoctorsRepository Obj, IConfiguration service)
+        public DoctorsController(IDoctorsRepository injectobject, IConfiguration service)
         {
-            Result = Obj;
+            Result = injectobject;
             Connection = service.GetConnectionString("Dbconnection");
         }
         // GET: DoctorsController
@@ -42,6 +42,7 @@ namespace MVC__with_CRUD.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Doctors add)
+        
         {
             try
             {
@@ -64,14 +65,14 @@ namespace MVC__with_CRUD.Controllers
         // GET: DoctorsController/Edit/5
         public ActionResult Edit(long id)
         {
-            var Obj = Result.GetbyID(id);
-            return View("Update",Obj);
+            var obj = Result.GetbyID(id);
+            return View("Update",obj);
         }
 
         // POST: DoctorsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(long id, Doctors Pro)
+        public ActionResult Edit(long id, Doctors replace)
         {
             try
             {
@@ -87,18 +88,18 @@ namespace MVC__with_CRUD.Controllers
         // GET: DoctorsController/Delete/5
         public ActionResult Delete(int id)
         {
-            var Get = Result.GetbyID(id);
+            var Get = Result.GetbyID(id); 
             return View("Delete",Get);
         }
 
         // POST: DoctorsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id,Doctors Get)
+        public ActionResult Delete1(int DoctorsID)
         {
             try
             {
-                Result.Delete(id);
+                Result.Delete(DoctorsID);
                 return RedirectToAction(nameof(Index));
             }
             catch
