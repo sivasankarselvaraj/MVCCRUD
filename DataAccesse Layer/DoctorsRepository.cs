@@ -39,41 +39,71 @@ namespace DataAccesse_Layer
         }
         public void Update(long No, Doctors replace)
         {
-            var Send = new SqlConnection(Connection);
-            Send.Open();
-            var Update = $"exec UpdateProcedure {No},'{replace.DoctorsName}','{replace.Qualification}',{replace.PassoutYear},{replace.PhoneNumber},'{replace.Addresss}'";
-            Send.Execute(Update);
-            Send.Close();
+            try
+            {
+                var Send = new SqlConnection(Connection);
+                Send.Open();
+                var Update = $"exec UpdateProcedure {No},'{replace.DoctorsName}','{replace.Qualification}',{replace.PassoutYear},{replace.PhoneNumber},'{replace.Addresss}'";
+                Send.Execute(Update);
+                Send.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
         public List<Doctors> GetAll()
         {
-            var Send = new SqlConnection(Connection);
-            Send.Open();
-            var Show = $"exec SelectProcedure ";
-            var Details = Send.Query<Doctors>(Show);
-            Send.Close();
-            return Details.ToList();
+            try
+            {
+                var Send = new SqlConnection(Connection);
+                Send.Open();
+                var Show = $"exec SelectProcedure ";
+                var Details = Send.Query<Doctors>(Show);
+                Send.Close();
+                return Details.ToList();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
 
         }
 
         public void Delete(long no)
         {
-            var Send = new SqlConnection(Connection);
-            Send.Open();
-            var Delete = $"exec DeleteProcedure {no}";
+            try
+            {
+                var Send = new SqlConnection(Connection);
+                Send.Open();
+                var Delete = $"exec DeleteProcedure {no}";
 
-            var Cut = Send.Query<Doctors>(Delete);
-            Send.Close();
+                var Cut = Send.Query<Doctors>(Delete);
+                Send.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
 
         }
         public Doctors GetbyID(long No)
         {
-            var Send = new SqlConnection(Connection);
-            Send.Open();
-            var Show = $"exec GetbyID {No} ";
-            var Details = Send.QueryFirstOrDefault<Doctors>(Show);
-            Send.Close();
-            return Details;
+
+            try
+            {
+                var Send = new SqlConnection(Connection);
+                Send.Open();
+                var Show = $"exec GetbyID {No} ";
+                var Details = Send.QueryFirstOrDefault<Doctors>(Show);
+                Send.Close();
+                return Details;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
     
     }

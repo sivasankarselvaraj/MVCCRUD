@@ -20,22 +20,42 @@ namespace MVC__with_CRUD.Controllers
         // GET: DoctorsController
         public ActionResult Index()
         {
-            var Obj = Result.GetAll();
-            return View("View",Obj);
+            try
+            {
+                var Obj = Result.GetAll();
+                return View("View", Obj);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: DoctorsController/Details/5
         public ActionResult Details(int id)
         {
-          var obj= Result.GetbyID(id);
-            return View("Details",obj);
+            try
+            {
+                var obj = Result.GetbyID(id);
+                return View("Details", obj);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: DoctorsController/Create
         public ActionResult Create()
         {
-            
-            return View("Create", new Doctors());
+            try
+            {
+                return View("Create", new Doctors());
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: DoctorsController/Create
@@ -65,8 +85,15 @@ namespace MVC__with_CRUD.Controllers
         // GET: DoctorsController/Edit/5
         public ActionResult Edit(long id)
         {
-            var obj = Result.GetbyID(id);
-            return View("Update",obj);
+            try
+            {
+                var obj = Result.GetbyID(id);
+                return View("Update", obj);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: DoctorsController/Edit/5
@@ -76,20 +103,27 @@ namespace MVC__with_CRUD.Controllers
         {
             try
             {
-                
+                Result.Update(id, replace);   
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View("View");
             }
         }
 
         // GET: DoctorsController/Delete/5
         public ActionResult Delete(int id)
         {
-            var Get = Result.GetbyID(id); 
-            return View("Delete",Get);
+            try
+            {
+                var Get = Result.GetbyID(id);
+                return View("Delete", Get);
+            }
+            catch 
+            {
+                return View();
+            }
         }
 
         // POST: DoctorsController/Delete/5
@@ -104,7 +138,7 @@ namespace MVC__with_CRUD.Controllers
             }
             catch
             {
-                return View();
+                return View("error");
             }
         }
         public ActionResult LogIN()
