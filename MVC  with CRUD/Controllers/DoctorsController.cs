@@ -11,10 +11,12 @@ namespace MVC__with_CRUD.Controllers
     public class DoctorsController : Controller
     {
         private readonly IDoctorsRepository Result;
+        private readonly ILocationRepository Add;
         private readonly string Connection;
-        public DoctorsController(IDoctorsRepository injectobject, IConfiguration service)
+        public DoctorsController(IDoctorsRepository injectbject, IConfiguration service)
         {
-            Result = injectobject;
+            Result = injectbject;
+            Add = new LocationRepository(service);
             Connection = service.GetConnectionString("Dbconnection");
         }
         // GET: DoctorsController
@@ -37,6 +39,7 @@ namespace MVC__with_CRUD.Controllers
             try
             {
                 var obj = Result.GetbyID(id);
+                obj.Location = Add.GetLocation().ToList();
                 return View("Details", obj);
             }
             catch
@@ -46,11 +49,13 @@ namespace MVC__with_CRUD.Controllers
         }
 
         // GET: DoctorsController/Create
-        public ActionResult Create()
+        public ActionResult add()
         {
             try
             {
-                return View("Create", new Doctors());
+                var Creat = new Doctors();
+                Creat.Location = Add.GetLocation().ToList();
+                return View("Create",Creat);
             }
             catch
             {
@@ -88,6 +93,7 @@ namespace MVC__with_CRUD.Controllers
             try
             {
                 var obj = Result.GetbyID(id);
+                obj.Location = Add.GetLocation().ToList();
                 return View("Update", obj);
             }
             catch

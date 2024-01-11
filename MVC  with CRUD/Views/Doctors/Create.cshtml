@@ -17,10 +17,10 @@
                 <input asp-for="DoctorsName" class="form-control" />
                 <span asp-validation-for="DoctorsName" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="PassoutYear" class="control-label"></label>
-                <input asp-for="PassoutYear" type="tel"class="form-control" />
+                <input asp-for="PassoutYear" type="tel" class="form-control" />
                 <span asp-validation-for="PassoutYear" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,6 +37,14 @@
                 <label asp-for="Addresss" class="control-label"></label>
                 <input asp-for="Addresss" class="form-control" />
                 <span asp-validation-for="Addresss" class="text-danger"></span>
+            </div>
+            <div class="form-group" >
+                <label asp-for="LocationId" class="control-label"></label>
+                <select asp-for="LocationId" class="form-control" asp-items="@(new SelectList(Model.Location,"LocationId","LocationName"))">
+                    <option value="0">--Select--</option>
+
+                </select>
+                <span asp-validation-for="LocationId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

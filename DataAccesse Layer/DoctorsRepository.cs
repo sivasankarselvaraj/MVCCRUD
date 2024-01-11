@@ -24,7 +24,7 @@ namespace DataAccesse_Layer
 
                 var Send = new SqlConnection(Connection);
                 Send.Open();
-                var Insert = $"exec InsertProcedure'{add.DoctorsName}','{add.Qualification}',{add.PassoutYear},{add.PhoneNumber},'{add.Addresss}'";
+                var Insert = $"exec InsertProcedure'{add.DoctorsName}','{add.Qualification}',{add.PassoutYear},{add.PhoneNumber},'{add.Addresss}',{add.LocationId}";
                 Send.Execute(Insert);
                 Send.Close();
             }

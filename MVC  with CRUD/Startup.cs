@@ -24,6 +24,7 @@ namespace MVC__with_CRUD
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IDoctorsRepository, DoctorsRepository>();
+            services.AddTransient<ILocationRepository, LocationRepository>();
             services.AddControllersWithViews();
         }
 

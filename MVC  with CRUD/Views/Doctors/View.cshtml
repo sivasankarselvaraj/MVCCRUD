@@ -7,7 +7,7 @@
 <h1>View</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="Doctors" asp-action="add">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -30,7 +30,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Addresss)
             </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.LocationId)</th>
         </tr>
     </thead>
     <tbody>
@@ -55,9 +55,12 @@
                 @Html.DisplayFor(modelItem => item.Addresss)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.DoctorsID }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.DoctorsID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.DoctorsID })
+                @Html.DisplayFor(modelItem => item.LocationId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DoctorsID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DoctorsID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DoctorsID })
             </td>
         </tr>
 }
