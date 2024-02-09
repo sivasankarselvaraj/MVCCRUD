@@ -27,6 +27,6 @@ namespace DataAccesse_Layer
         [Required(ErrorMessage = "Enter the Address ")]
         public string Addresss { get; set; }
         public long LocationId { get; set; }
-        public List<Locations> Location { get; set; }
+        public List<Locations> Locations { get; set; }
     }
 }

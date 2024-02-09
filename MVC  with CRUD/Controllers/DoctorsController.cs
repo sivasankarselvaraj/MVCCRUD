@@ -39,7 +39,7 @@ namespace MVC__with_CRUD.Controllers
             try
             {
                 var obj = Result.GetbyID(id);
-                obj.Location = Add.GetLocation().ToList();
+                obj.Locations = Add.GetLocation().ToList();
                 return View("Details", obj);
             }
             catch
@@ -54,7 +54,7 @@ namespace MVC__with_CRUD.Controllers
             try
             {
                 var Creat = new Doctors();
-                Creat.Location = Add.GetLocation().ToList();
+                Creat.Locations = Add.GetLocation().ToList();
                 return View("Create",Creat);
             }
             catch
@@ -93,7 +93,7 @@ namespace MVC__with_CRUD.Controllers
             try
             {
                 var obj = Result.GetbyID(id);
-                obj.Location = Add.GetLocation().ToList();
+                obj.Locations = Add.GetLocation().ToList();
                 return View("Update", obj);
             }
             catch

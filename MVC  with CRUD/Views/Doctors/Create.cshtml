@@ -40,7 +40,7 @@
             </div>
             <div class="form-group" >
                 <label asp-for="LocationId" class="control-label"></label>
-                <select asp-for="LocationId" class="form-control" asp-items="@(new SelectList(Model.Location,"LocationId","LocationName"))">
+                <select asp-for="LocationId" class="form-control" asp-items="@(new SelectList(Model.Locations,"LocationId","LocationName"))">
                     <option value="0">--Select--</option>
 
                 </select>
